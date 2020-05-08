@@ -13,6 +13,10 @@
 		451CEC332462762E007363DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451CEC322462762E007363DD /* Assets.xcassets */; };
 		451CEC362462762E007363DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 451CEC352462762E007363DD /* Preview Assets.xcassets */; };
 		451CEC392462762E007363DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 451CEC372462762E007363DD /* LaunchScreen.storyboard */; };
+		451CEC412462765E007363DD /* HSRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC402462765E007363DD /* HSRService.swift */; };
+		451CEC432462777F007363DD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC422462777F007363DD /* Station.swift */; };
+		451CEC4524627B87007363DD /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC4424627B87007363DD /* Timetable.swift */; };
+		456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456F4D1D24653B7C00E53BB1 /* Train.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		451CEC352462762E007363DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		451CEC382462762E007363DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		451CEC3A2462762E007363DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		451CEC402462765E007363DD /* HSRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRService.swift; sourceTree = "<group>"; };
+		451CEC422462777F007363DD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		451CEC4424627B87007363DD /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
+		456F4D1D24653B7C00E53BB1 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				451CEC372462762E007363DD /* LaunchScreen.storyboard */,
 				451CEC3A2462762E007363DD /* Info.plist */,
 				451CEC342462762E007363DD /* Preview Content */,
+				451CEC402462765E007363DD /* HSRService.swift */,
+				451CEC422462777F007363DD /* Station.swift */,
+				451CEC4424627B87007363DD /* Timetable.swift */,
+				456F4D1D24653B7C00E53BB1 /* Train.swift */,
 			);
 			path = Railtime;
 			sourceTree = "<group>";
@@ -146,8 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				451CEC4524627B87007363DD /* Timetable.swift in Sources */,
 				451CEC2D2462762D007363DD /* AppDelegate.swift in Sources */,
+				456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */,
+				451CEC432462777F007363DD /* Station.swift in Sources */,
 				451CEC2F2462762D007363DD /* SceneDelegate.swift in Sources */,
+				451CEC412462765E007363DD /* HSRService.swift in Sources */,
 				451CEC312462762D007363DD /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

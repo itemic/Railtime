@@ -1,0 +1,41 @@
+//
+//  Train.swift
+//  Railtime
+//
+//  Created by Terran Kroft on 5/8/20.
+//  Copyright © 2020 itemic. All rights reserved.
+//
+
+import Foundation
+
+struct Train: Codable, Identifiable {
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "TrainNo"
+        case start = "StartingStationID"
+        case end = "EndingStationID"
+        case direction = "Direction"
+        case departure = "DepartureTime"
+        
+    }
+    var id: String // use train id
+    var start: String
+    var end: String
+    var direction: Int
+    var departure: String
+    
+//    var formattedDeparture: String {
+//        if let departure = departure {
+//            let formatter = DateFormatter()
+//            formatter.timeStyle = .short
+//            return formatter.string(from: departure)
+//        } else {
+//            return "--"
+//        }
+//    }
+    
+
+    
+    
+    
+}
