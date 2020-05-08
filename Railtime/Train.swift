@@ -15,14 +15,16 @@ struct Train: Codable, Identifiable {
         case start = "StartingStationID"
         case end = "EndingStationID"
         case direction = "Direction"
-        case departure = "DepartureTime"
+        case departureTime = "DepartureTime"
+        case arrivalTime = "ArrivalTime"
         
     }
     var id: String // use train id
     var start: String
     var end: String
     var direction: Int
-    var departure: String
+    var departureTime: String
+    var arrivalTime: String
     
 //    var formattedDeparture: String {
 //        if let departure = departure {

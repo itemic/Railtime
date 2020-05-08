@@ -9,27 +9,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    //    @ObservedObject private var stationsVM = StationsViewModel(service: HSRService())
+                        
     @EnvironmentObject private var service: HSRService
     @State private var selectedStation = "Zuoying"
     @State private var selectedIndex = ""
     @State private var selectedX = "Nangang"
-    
+    @State private var sortPickerChoice = 0
     
     
     var body: some View {
         NavigationView {
             VStack {
                 stationScrolls
-                Spacer()
-                Form {
-                    Text("A")
-                    Button(action: {
-                        print(self.service.trains)
-                    }) {
-                        Text("Debug")
-                    }
-                    List(service.trains) { train in
+               
+                List(service.trains.filter {
+                    $0.direction == sortPickerChoice
+                }) { train in
+                    NavigationLink(destination: TrainView(trainId: train.id)) {
+                    
                         HStack(alignment: .center) {
                             //                Spacer()
                             Image(systemName: "\(train.direction == 0 ? "s" : "n").circle.fill")
@@ -37,25 +34,36 @@ struct ContentView: View {
                             
                             VStack(alignment: .leading) {
                                 Text("\(train.id)").font(.subheadline)
+                                Text("\(self.service.getStationFromId(id: train.start)!.name.english) → \(self.service.getStationFromId(id: train.end)!.name.english)").font(.body)
                                 
                                 
                             }
                             Spacer()
-                            Text("\(train.departure)")
+                            Text("\(train.departureTime)")
+                                .font(.system(.body, design: .monospaced))
                             
                             
-                        }
+                        
                     }
+                    
                 }
+                }
+                
+                Spacer()
+                Picker(selection: $sortPickerChoice, label: Text("Filter")) {
+                                   Text("Southbound").tag(0)
+                                   Text("Northbound").tag(1)
+                                   
+                               }.pickerStyle(SegmentedPickerStyle())
             }
             .navigationBarTitle("Railtime")
         }
     }
     
     var stationScrolls: some View {
-        VStack{
+        
             VStack {
-                Text("Selected: \(selectedX)")
+//                Text("Selected: \(selectedX)")
                 if !service.stations.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack{
@@ -107,12 +115,8 @@ struct ContentView: View {
             
             
             
-        }
         
-        ////
-        //        List(service.stations) { station in
-        //            Text(station.name.english)
-        //        }.onAppear(perform: service.getStations)
+        
         
     }
 }

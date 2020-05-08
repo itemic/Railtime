@@ -29,3 +29,8 @@ struct StationName: Codable {
         case chinese = "Zh_tw"
     }
 }
+
+enum Language {
+    case english
+    case chinese
+}

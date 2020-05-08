@@ -16,7 +16,13 @@ final class HSRService: ObservableObject {
         }
     }
     // todo implement some sort of caching so it doesn't just reload every time
-    @Published var trains: [Train] = [] 
+    @Published var trains: [Train] = [] {
+        willSet {
+            self.objectWillChange.send()
+        }
+    }
+    
+    @Published var timetable: Timetable? = nil
     
     init() {
         getStations()
@@ -56,6 +62,44 @@ final class HSRService: ObservableObject {
         
     }
     
+    func getSpecificTrainInfo(id: String) -> Void {
+        print("called")
+        // get today's date because we only care about today!
+        // live in the now!
+    
+
+        
+        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Today/TrainNo/\(id)?$format=JSON") else {
+            print("Invalid request.")
+            return
+        }
+        
+        print(request.url!)
+        
+        URLSession.shared.dataTask(with: request) {data, response, error in
+            
+            if let data = data {
+                let content = String(data: data, encoding: .utf8)
+                print(content!)
+                
+                if let decodedResponse = try? JSONDecoder().decode(Timetable.self, from: data) {
+                    print("we trains")
+                    
+                    DispatchQueue.main.async {
+                        print(decodedResponse)
+                        self.timetable = decodedResponse
+                    }
+                    return
+                }
+                
+            }
+            
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown Error")")
+            
+        }.resume()
+        
+    }
+    
     func getTrainsFromStation(station: String) -> Void {
         print("called")
         // get today's date because we only care about today!
@@ -68,7 +112,7 @@ final class HSRService: ObservableObject {
         // get station id
         let stationId = getStationFromName(city: station)!.id
         
-        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Station/\(stationId)/\(now)?$top=30&$format=JSON") else {
+        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Station/\(stationId)/\(now)?$format=JSON") else {
             print("Invalid request.")
             return
         }
@@ -110,7 +154,7 @@ final class HSRService: ObservableObject {
         URLSession.shared.dataTask(with: request) {data, response, error in
             
             if let data = data {
-                let content = String(data: data, encoding: .utf8)
+//                let content = String(data: data, encoding: .utf8)
 //                print(content!)
                 
                 if let decodedResponse = try? JSONDecoder().decode([Station].self, from: data) {
@@ -137,5 +181,9 @@ final class HSRService: ObservableObject {
     
     func getStationFromName(city: String) -> Station? {
         return stations.first(where: {$0.name.english == city})
+    }
+    
+    func getStationFromId(id: String) -> Station? {
+        return stations.first(where: {$0.id == id})
     }
 }

@@ -17,6 +17,7 @@
 		451CEC432462777F007363DD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC422462777F007363DD /* Station.swift */; };
 		451CEC4524627B87007363DD /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC4424627B87007363DD /* Timetable.swift */; };
 		456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456F4D1D24653B7C00E53BB1 /* Train.swift */; };
+		456F4D202465B0DC00E53BB1 /* TrainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456F4D1F2465B0DC00E53BB1 /* TrainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		451CEC422462777F007363DD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		451CEC4424627B87007363DD /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		456F4D1D24653B7C00E53BB1 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
+		456F4D1F2465B0DC00E53BB1 /* TrainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				451CEC2C2462762D007363DD /* AppDelegate.swift */,
 				451CEC2E2462762D007363DD /* SceneDelegate.swift */,
 				451CEC302462762D007363DD /* ContentView.swift */,
+				456F4D1F2465B0DC00E53BB1 /* TrainView.swift */,
 				451CEC322462762E007363DD /* Assets.xcassets */,
 				451CEC372462762E007363DD /* LaunchScreen.storyboard */,
 				451CEC3A2462762E007363DD /* Info.plist */,
@@ -161,6 +164,7 @@
 				451CEC4524627B87007363DD /* Timetable.swift in Sources */,
 				451CEC2D2462762D007363DD /* AppDelegate.swift in Sources */,
 				456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */,
+				456F4D202465B0DC00E53BB1 /* TrainView.swift in Sources */,
 				451CEC432462777F007363DD /* Station.swift in Sources */,
 				451CEC2F2462762D007363DD /* SceneDelegate.swift in Sources */,
 				451CEC412462765E007363DD /* HSRService.swift in Sources */,
