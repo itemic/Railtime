@@ -58,7 +58,7 @@ struct ContentView: View {
                             
                             
                         
-                        }
+                        }.foregroundColor(self.isTerminus(train) ? .gray: .black)
                     
                     }.buttonStyle(PlainButtonStyle())
                 }
