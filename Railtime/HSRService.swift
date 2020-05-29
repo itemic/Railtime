@@ -5,7 +5,7 @@ import Combine
 final class HSRService: ObservableObject {
     
     private let appID = "cd4f9db10a48499e9e007850aac4e591"
-    private let appKey = "GNwW09J87_z3y2Lq1HnvOVwSYmA"
+    private let appKey = "tJGjzjdWSv8ipfZLNUxS5otl79k"
     let objectWillChange = ObservableObjectPublisher()
     
     
