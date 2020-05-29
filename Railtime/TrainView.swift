@@ -12,13 +12,36 @@ struct TrainView: View {
     @EnvironmentObject private var service: HSRService
     let trainId: String
     var body: some View {
-        VStack {
-            Text("Train \(trainId)")
-            Text("Direction: \(service.timetable?.trainInfo.direction == 0 ? "Southbound" : "Northbound")")
-            Text("\(service.timetable?.trainInfo.startStation.english ?? "?") → \(service.timetable?.trainInfo.endStation.english ?? "?")")
-            Spacer()
-            Text("This train stops at...")
-            VStack {
+        ZStack {
+            
+                
+            
+//            self.service.timetable?.trainInfo.direction == 0 ? Color.green.edgesIgnoringSafeArea(.all) : Color.blue.edgesIgnoringSafeArea(.all)
+            Color.orange.edgesIgnoringSafeArea(.all)
+            VStack{
+                VStack {
+                //                       Spacer()
+                                        Text("\(self.trainId)").font(.system(size: 64, weight: .bold, design: .rounded))
+                                            .foregroundColor(.white)
+                                        
+                                        
+                                        Text("\(self.service.timetable?.trainInfo.direction == 0 ? "SOUTHBOUND" : "NORTHBOUND")")
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(self.service.timetable?.trainInfo.direction == 0 ? Color.green : Color.blue)
+                                        .fixedSize(horizontal: true, vertical: true)
+                                            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                            .background(Color.white)
+                                        .cornerRadius(10)
+                                        
+                                        
+                                        Text("\(self.service.timetable?.trainInfo.startStation.english ?? "?") → \(self.service.timetable?.trainInfo.endStation.english ?? "?")")
+                                            .foregroundColor(.white)
+                //                        Spacer()
+                                    
+                                    }
+                
+                
+                
                 List {
                 ForEach(service.timetable?.railStopTimes ?? [], id: \.stopSequence) { stop in
                     HStack {
@@ -31,8 +54,11 @@ struct TrainView: View {
                 }
                 }
             }
+
+            
             Spacer()
-        }.onAppear(perform: load)
+        }
+        .onAppear(perform: load)
     }
 
     func load() {

@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
                         
     @EnvironmentObject private var service: HSRService
-    @State private var selectedStation = "Nangang"
+    
     
     @State private var selectedX = "Nangang"
     @State private var sortPickerChoice = 2
@@ -43,12 +43,12 @@ struct ContentView: View {
                                 .foregroundColor(train.direction == 0 ? .green : .blue)
                             
                             VStack(alignment: .leading) {
-                                Text("\(train.id)").font(.subheadline)
+                                Text("\(train.id)").font(.system(.subheadline, design: .rounded))
                                 HStack {
                                     Text("\(self.service.getStationFromId(id: train.start)!.name.english)")
                                     Text("→")
                                     Text("\(self.service.getStationFromId(id: train.end)!.name.english)")
-                                        .fontWeight(self.service.getStationFromId(id: train.end)!.name.english == self.selectedX ? .semibold: .none)
+                                        .fontWeight(self.isTerminus(train) ? .semibold: .none)
                                 }
                                                                 
                             }
@@ -58,9 +58,9 @@ struct ContentView: View {
                             
                             
                         
-                    }
+                        }
                     
-                }
+                    }.buttonStyle(PlainButtonStyle())
                 }
                 
 
@@ -70,6 +70,9 @@ struct ContentView: View {
                 self.showingActionSheet = true
             }) {
                 Image(systemName: "line.horizontal.3.decrease.circle")
+                    .onTapGesture(perform: {
+                        self.showingActionSheet = true
+                    })
                     .actionSheet(isPresented: $showingActionSheet) {
                         ActionSheet(title: Text("Filter trains"), buttons: [
                             .default(Text("All Trains")) {self.sortPickerChoice = 2},
@@ -91,7 +94,8 @@ struct ContentView: View {
 //                Text("Selected: \(selectedX)")
                 if !service.stations.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false){
-                        HStack{
+                        HStack(spacing: 0){
+                            Spacer()
                             ForEach(service.stations) {station in
                                 
                                 if self.selectedX == station.name.english {
@@ -125,11 +129,12 @@ struct ContentView: View {
                                     }
                                     .buttonStyle(DeselectedSimpleButtonStyle())
                                 }
+                                Spacer()
                                 
                                 
                                 
                                 
-                                }.padding(2).onAppear(perform: eeee)
+                                }.padding(2).onAppear(perform: getTrainsFromStation)
                         }
                     }
                 } else {
@@ -138,15 +143,14 @@ struct ContentView: View {
                 
             }
             
-            
-            
-        
-        
-        
     }
     
-    func eeee() {
+    func getTrainsFromStation() {
         service.getTrainsFromStation(station: selectedX)
+    }
+    
+    func isTerminus(_ train: Train) -> Bool {
+        return service.getStationFromId(id: train.end)!.name.english == selectedX
     }
 }
 
@@ -161,6 +165,7 @@ struct SelectedSimpleButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(minWidth: 90)
+            .fixedSize(horizontal: true, vertical: true)
             .padding(10)
             .background(Color.orange)
             .cornerRadius(20)
@@ -173,6 +178,7 @@ struct DeselectedSimpleButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(minWidth: 90)
+            .fixedSize(horizontal: true, vertical: true)
             .padding(10)
             .background(Color.gray)
             .cornerRadius(20)
