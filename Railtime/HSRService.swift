@@ -22,7 +22,11 @@ final class HSRService: ObservableObject {
         }
     }
     
-    @Published var timetable: Timetable? = nil
+    @Published var timetable: Timetable? = nil {
+        willSet {
+            self.objectWillChange.send()
+        }
+    }
     
     init() {
         getStations()
@@ -82,16 +86,17 @@ final class HSRService: ObservableObject {
                 let content = String(data: data, encoding: .utf8)
                 print(content!)
                 
-                if let decodedResponse = try? JSONDecoder().decode(Timetable.self, from: data) {
+                if let decodedResponse = try? JSONDecoder().decode([Timetable].self, from: data) {
                     print("we trains")
                     
                     DispatchQueue.main.async {
                         print(decodedResponse)
-                        self.timetable = decodedResponse
+                        self.timetable = decodedResponse[0] //single elem
                     }
                     return
                 }
                 
+                print("can't decode")
             }
             
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown Error")")
@@ -126,10 +131,10 @@ final class HSRService: ObservableObject {
                 print(content!)
                 
                 if let decodedResponse = try? JSONDecoder().decode([Train].self, from: data) {
-                    print("we trains")
+//                    print("we trains")
                     
                     DispatchQueue.main.async {
-                        print(decodedResponse)
+//                        print(decodedResponse)
                         self.trains = decodedResponse
                     }
                     return
@@ -158,10 +163,10 @@ final class HSRService: ObservableObject {
 //                print(content!)
                 
                 if let decodedResponse = try? JSONDecoder().decode([Station].self, from: data) {
-                    print("we decode")
+                    
                     
                     DispatchQueue.main.async {
-                        print(decodedResponse)
+//                        print(decodedResponse)
                         self.stations = decodedResponse
                     }
                     return

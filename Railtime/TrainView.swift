@@ -13,7 +13,25 @@ struct TrainView: View {
     let trainId: String
     var body: some View {
         VStack {
-            Text("Hey \(trainId)")
+            Text("Train \(trainId)")
+            Text("Direction: \(service.timetable?.trainInfo.direction == 0 ? "Southbound" : "Northbound")")
+            Text("\(service.timetable?.trainInfo.startStation.english ?? "?") → \(service.timetable?.trainInfo.endStation.english ?? "?")")
+            Spacer()
+            Text("This train stops at...")
+            VStack {
+                List {
+                ForEach(service.timetable?.railStopTimes ?? [], id: \.stopSequence) { stop in
+                    HStack {
+                    Text("\(stop.name.english)")
+                        Spacer()
+                    Text("\(stop.departureTime)")
+                        .bold()
+                    }
+                    
+                }
+                }
+            }
+            Spacer()
         }.onAppear(perform: load)
     }
 

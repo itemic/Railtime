@@ -11,19 +11,29 @@ import SwiftUI
 struct ContentView: View {
                         
     @EnvironmentObject private var service: HSRService
-    @State private var selectedStation = "Zuoying"
-    @State private var selectedIndex = ""
-    @State private var selectedX = "Nangang"
-    @State private var sortPickerChoice = 0
+    @State private var selectedStation = "Nangang"
     
+    @State private var selectedX = "Nangang"
+    @State private var sortPickerChoice = 2
+    @State private var showingActionSheet = false
+
+    
+    var time = {
+        
+    }
+//    
+//    init() {
+//            self.service.getTrainsFromStation(station: "Nangang")
+//    }
     
     var body: some View {
         NavigationView {
             VStack {
                 stationScrolls
+
                
                 List(service.trains.filter {
-                    $0.direction == sortPickerChoice
+                    sortPickerChoice == 2 ? true : $0.direction == sortPickerChoice
                 }) { train in
                     NavigationLink(destination: TrainView(trainId: train.id)) {
                     
@@ -34,9 +44,13 @@ struct ContentView: View {
                             
                             VStack(alignment: .leading) {
                                 Text("\(train.id)").font(.subheadline)
-                                Text("\(self.service.getStationFromId(id: train.start)!.name.english) → \(self.service.getStationFromId(id: train.end)!.name.english)").font(.body)
-                                
-                                
+                                HStack {
+                                    Text("\(self.service.getStationFromId(id: train.start)!.name.english)")
+                                    Text("→")
+                                    Text("\(self.service.getStationFromId(id: train.end)!.name.english)")
+                                        .fontWeight(self.service.getStationFromId(id: train.end)!.name.english == self.selectedX ? .semibold: .none)
+                                }
+                                                                
                             }
                             Spacer()
                             Text("\(train.departureTime)")
@@ -49,20 +63,31 @@ struct ContentView: View {
                 }
                 }
                 
-                Spacer()
-                Picker(selection: $sortPickerChoice, label: Text("Filter")) {
-                                   Text("Southbound").tag(0)
-                                   Text("Northbound").tag(1)
-                                   
-                               }.pickerStyle(SegmentedPickerStyle())
-            }
+
+                }
             .navigationBarTitle("Railtime")
+            .navigationBarItems(trailing: Button(action: {
+                self.showingActionSheet = true
+            }) {
+                Image(systemName: "line.horizontal.3.decrease.circle")
+                    .actionSheet(isPresented: $showingActionSheet) {
+                        ActionSheet(title: Text("Filter trains"), buttons: [
+                            .default(Text("All Trains")) {self.sortPickerChoice = 2},
+                            .default(Text("Southbound Trains")) {self.sortPickerChoice = 0},
+                            .default(Text("Northbound Trains")) {self.sortPickerChoice = 1},
+                        
+                            .cancel()
+                        ])
+                }
+            })
+            
         }
     }
     
+    
     var stationScrolls: some View {
         
-            VStack {
+        VStack {
 //                Text("Selected: \(selectedX)")
                 if !service.stations.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false){
@@ -104,7 +129,7 @@ struct ContentView: View {
                                 
                                 
                                 
-                            }.padding(2)
+                                }.padding(2).onAppear(perform: eeee)
                         }
                     }
                 } else {
@@ -118,6 +143,10 @@ struct ContentView: View {
         
         
         
+    }
+    
+    func eeee() {
+        service.getTrainsFromStation(station: selectedX)
     }
 }
 
