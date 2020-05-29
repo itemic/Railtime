@@ -85,13 +85,13 @@ final class HSRService: ObservableObject {
             
             if let data = data {
                 let content = String(data: data, encoding: .utf8)
-                print(content!)
+//                print(content!)
                 
                 if let decodedResponse = try? JSONDecoder().decode([Timetable].self, from: data) {
                     print("we trains")
                     
                     DispatchQueue.main.async {
-                        print(decodedResponse)
+//                        print(decodedResponse)
                         self.timetable = decodedResponse[0] //single elem
                     }
                     return
@@ -129,7 +129,7 @@ final class HSRService: ObservableObject {
             
             if let data = data {
                 let content = String(data: data, encoding: .utf8)
-                print(content!)
+//                print(content!)
                 
                 if let decodedResponse = try? JSONDecoder().decode([Train].self, from: data) {
 //                    print("we trains")
