@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Train: Codable, Identifiable {
+struct Train: Codable, Identifiable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case id = "TrainNo"

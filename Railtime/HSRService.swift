@@ -8,6 +8,7 @@ final class HSRService: ObservableObject {
     private let appKey = "GNwW09J87_z3y2Lq1HnvOVwSYmA"
     let objectWillChange = ObservableObjectPublisher()
     
+    
 //    let dummyStation = Station(id: "0000", address: "NA", name: StationName(english: "DUMMY", chinese: "DUMMY"))
     
     @Published var stations: [Station] = [] {

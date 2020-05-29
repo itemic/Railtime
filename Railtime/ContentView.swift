@@ -29,7 +29,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                
                 stationScrolls
+//                entryScrolls
 
                
                 List(service.trains.filter {
@@ -63,6 +65,11 @@ struct ContentView: View {
                     }.buttonStyle(PlainButtonStyle())
                 }
                 
+                Spacer()
+
+                Text("Last updated never.")
+                Spacer()
+                
 
                 }
             .navigationBarTitle("Railtime")
@@ -84,6 +91,14 @@ struct ContentView: View {
                 }
             })
             
+        }
+    }
+    
+    var entryScrolls: some View {
+        VStack {
+            ForEach(0..<service.trains.count) {index in
+                Text(self.service.trains[index].id)
+            }
         }
     }
     
