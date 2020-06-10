@@ -2,7 +2,9 @@ import Foundation
 import CryptoKit
 import Combine
 
-final class HSRService: ObservableObject {
+
+//TODO: Reduce duplication merge all webservice classes
+final class TRAService: ObservableObject {
     
     private let appID = "cd4f9db10a48499e9e007850aac4e591"
     private let appKey = "tJGjzjdWSv8ipfZLNUxS5otl79k"
@@ -44,7 +46,7 @@ final class HSRService: ObservableObject {
     
     func authenticateAndRequest(with endpoint: String) -> URLRequest? {
         guard let url = URL(string: endpoint) else {
-            print ("Invalid URL")
+            print ("Invalid URL for \(endpoint)")
             return nil
         }
         
@@ -74,7 +76,7 @@ final class HSRService: ObservableObject {
     
 
         
-        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Today/TrainNo/\(id)?$format=JSON") else {
+        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/Today/TrainNo/\(id)?$format=JSON") else {
             print("Invalid request.")
             return
         }
@@ -118,7 +120,7 @@ final class HSRService: ObservableObject {
         // get station id
         let stationId = getStationFromName(city: station)!.id
         
-        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/Station/\(stationId)/\(now)?$format=JSON") else {
+        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/Station/\(stationId ?? String(0))/\(now)?$format=JSON") else {
             print("Invalid request.")
             return
         }
@@ -150,7 +152,7 @@ final class HSRService: ObservableObject {
     }
     
     func getStations() {
-        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/Station?$format=JSON") else {
+        guard let request = authenticateAndRequest(with: "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$top=30&$format=JSON") else {
             print("Invalid request.")
             return
         }
@@ -160,19 +162,23 @@ final class HSRService: ObservableObject {
         URLSession.shared.dataTask(with: request) {data, response, error in
             
             if let data = data {
+                print("we got A")
                 let content = String(data: data, encoding: .utf8)
                 print(content!)
+                print("we got B")
                 
                 if let decodedResponse = try? JSONDecoder().decode([Station].self, from: data) {
-                    
+                    print("we got here")
                     
                     DispatchQueue.main.async {
-//                        print(decodedResponse)
+                        print("this works")
+                        print(decodedResponse)
                         self.stations = decodedResponse
                     }
                     return
                 } else {
-                    print("oops")
+                    print("oop...s")
+                    print(error ?? "...")
                 }
                 
             }
@@ -191,5 +197,9 @@ final class HSRService: ObservableObject {
     
     func getStationFromId(id: String) -> Station? {
         return stations.first(where: {$0.id == id})
+    }
+    
+    func getNameFromId(id: String) -> String {
+        return stations.first(where: {$0.id == id})?.name.english ?? "..."
     }
 }

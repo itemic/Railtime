@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct StationsInfo: Codable {
+    var Stations: [Station]
+}
+
 struct Station: Codable, Identifiable {
     
     enum CodingKeys: String, CodingKey {

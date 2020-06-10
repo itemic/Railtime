@@ -16,11 +16,14 @@
 		451CEC412462765E007363DD /* HSRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC402462765E007363DD /* HSRService.swift */; };
 		451CEC432462777F007363DD /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC422462777F007363DD /* Station.swift */; };
 		451CEC4524627B87007363DD /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451CEC4424627B87007363DD /* Timetable.swift */; };
+		4520DC782490E4C50065DF6F /* TRAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4520DC772490E4C50065DF6F /* TRAModel.swift */; };
 		4544F1872481233F00B5EC27 /* HSRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544F1862481233F00B5EC27 /* HSRView.swift */; };
 		4544F189248125B400B5EC27 /* TRAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544F188248125B400B5EC27 /* TRAView.swift */; };
 		4544F18B2481260400B5EC27 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4544F18A2481260400B5EC27 /* Buttons.swift */; };
 		456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456F4D1D24653B7C00E53BB1 /* Train.swift */; };
 		456F4D202465B0DC00E53BB1 /* TrainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456F4D1F2465B0DC00E53BB1 /* TrainView.swift */; };
+		458A185F248215410088A13D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A185E248215410088A13D /* Utilities.swift */; };
+		458A1861248219E00088A13D /* TRAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A1860248219E00088A13D /* TRAService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,11 +38,14 @@
 		451CEC402462765E007363DD /* HSRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRService.swift; sourceTree = "<group>"; };
 		451CEC422462777F007363DD /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		451CEC4424627B87007363DD /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
+		4520DC772490E4C50065DF6F /* TRAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRAModel.swift; sourceTree = "<group>"; };
 		4544F1862481233F00B5EC27 /* HSRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSRView.swift; sourceTree = "<group>"; };
 		4544F188248125B400B5EC27 /* TRAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRAView.swift; sourceTree = "<group>"; };
 		4544F18A2481260400B5EC27 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		456F4D1D24653B7C00E53BB1 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
 		456F4D1F2465B0DC00E53BB1 /* TrainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainView.swift; sourceTree = "<group>"; };
+		458A185E248215410088A13D /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		458A1860248219E00088A13D /* TRAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRAService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +85,14 @@
 				4544F18A2481260400B5EC27 /* Buttons.swift */,
 				4544F188248125B400B5EC27 /* TRAView.swift */,
 				456F4D1F2465B0DC00E53BB1 /* TrainView.swift */,
+				458A185E248215410088A13D /* Utilities.swift */,
 				451CEC322462762E007363DD /* Assets.xcassets */,
 				451CEC372462762E007363DD /* LaunchScreen.storyboard */,
 				451CEC3A2462762E007363DD /* Info.plist */,
 				451CEC342462762E007363DD /* Preview Content */,
 				451CEC402462765E007363DD /* HSRService.swift */,
+				458A1860248219E00088A13D /* TRAService.swift */,
+				4520DC772490E4C50065DF6F /* TRAModel.swift */,
 				451CEC422462777F007363DD /* Station.swift */,
 				451CEC4424627B87007363DD /* Timetable.swift */,
 				456F4D1D24653B7C00E53BB1 /* Train.swift */,
@@ -175,7 +184,10 @@
 				4544F189248125B400B5EC27 /* TRAView.swift in Sources */,
 				4544F18B2481260400B5EC27 /* Buttons.swift in Sources */,
 				4544F1872481233F00B5EC27 /* HSRView.swift in Sources */,
+				4520DC782490E4C50065DF6F /* TRAModel.swift in Sources */,
 				456F4D1E24653B7C00E53BB1 /* Train.swift in Sources */,
+				458A1861248219E00088A13D /* TRAService.swift in Sources */,
+				458A185F248215410088A13D /* Utilities.swift in Sources */,
 				456F4D202465B0DC00E53BB1 /* TrainView.swift in Sources */,
 				451CEC432462777F007363DD /* Station.swift in Sources */,
 				451CEC2F2462762D007363DD /* SceneDelegate.swift in Sources */,

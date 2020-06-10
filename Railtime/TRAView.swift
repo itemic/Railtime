@@ -10,10 +10,10 @@ import SwiftUI
 
 struct TRAView: View {
                         
-    @EnvironmentObject private var service: HSRService
+    @EnvironmentObject private var service: TRAService
     
     
-    @State private var selectedX = "Nangang"
+    @State private var selectedX = "Hsinchu"
     @State private var sortPickerChoice = 2
     @State private var showingActionSheet = false
 
@@ -22,14 +22,15 @@ struct TRAView: View {
         
     }
 //
-//    init() {
-//            self.service.getTrainsFromStation(station: "Nangang")
-//    }
+    init() {
+             UINavigationBar.appearance().largeTitleTextAttributes = [
+           .foregroundColor: UIColor.white]
+    }
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color.blue.edgesIgnoringSafeArea(.all)
+                Color.navy.edgesIgnoringSafeArea(.all)
                 VStack {
                     stationScrolls
     //                entryScrolls
@@ -48,9 +49,9 @@ struct TRAView: View {
                                 VStack(alignment: .leading) {
                                     Text("\(train.id)").font(.system(.subheadline, design: .rounded))
                                     HStack {
-                                        Text("\(self.service.getStationFromId(id: train.start)!.name.english)")
+                                        Text("\(self.service.getNameFromId(id: train.start))")
                                         Text("→")
-                                        Text("\(self.service.getStationFromId(id: train.end)!.name.english)")
+                                        Text("\(self.service.getNameFromId(id: train.end))")
                                             .fontWeight(self.isTerminus(train) ? .semibold: .none)
                                     }
                                                                     
@@ -126,7 +127,7 @@ struct TRAView: View {
                                         
                                         
                                     }
-                                    .buttonStyle(SelectedSimpleButtonStyle())
+                                    .buttonStyle(TRASelectedButton())
                                 } else {
                                     Button(action: {
                                         self.selectedX = station.name.english
@@ -164,7 +165,8 @@ struct TRAView: View {
     }
     
     func isTerminus(_ train: Train) -> Bool {
-        return service.getStationFromId(id: train.end)!.name.english == selectedX
+        return service.getNameFromId(id: train.end) == selectedX
+//        return service.getStationFromId(id: train.end)!.name.english == selectedX
     }
 }
 
@@ -174,3 +176,18 @@ struct TRAView_Previews: PreviewProvider {
         TRAView().environmentObject(HSRService())
     }
 }
+
+
+struct TRASelectedButton: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .frame(minWidth: 90)
+            .fixedSize(horizontal: true, vertical: true)
+            .padding(10)
+            .background(Color.white)
+            .cornerRadius(20)
+//            .foregroundColor(.navy)
+        
+    }
+}
+
